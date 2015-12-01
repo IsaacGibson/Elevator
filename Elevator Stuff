@@ -1,0 +1,66 @@
+class ElevatorSystem
+{
+	private int numFloors;
+	private Elevator[] elevators;
+	
+	public ElevatorSystem(int f, int e)
+	{
+		numFloors = f;
+		elevators = new Elevator[e];
+		for(int i = 0; i < e; i++)
+		{
+			elevators[i] = new Elevator();
+		}
+	}
+	
+	public void floorCall(int f)
+	{
+		int index = 0;
+		//Determine which elevator is closest to the given floor, assign index as necessary
+		elevators[index].goToFloor(f);
+	}
+	
+	public void status()
+	{
+		for(int i = 1; i <= elevators.length; i++)
+		{
+			System.out.println("Elevator " + i + " is on floor " + elevators[i].getFloor());
+		}
+	}
+}
+
+class Elevator
+{
+	private int floor;
+	
+	public Elevator()
+	{
+		floor = 1;
+	}
+	
+	public void goUp()
+	{
+		floor++;
+	}
+	
+	public void goDown()
+	{
+		floor--;
+	}
+	
+	public int getFloor()
+	{
+		return floor;
+	}
+	
+	public void goToFloor(int f)
+	{
+		while(floor != f)
+		{
+			if(floor > f)
+				goDown();
+			if(floor < f)
+				goUp();
+		}
+	}
+}
